@@ -16,6 +16,6 @@ Before I began any feature engineering I decided to look at the target variables
 
 The target variable's distribution for all years is shown below:
 <p align="center">
-  <img src="https://github.com/tpender95/Predicting-Boston-Property-ATV/blob/master/pics/logtransavtot.png" width="350" title="AV_TOTAL Distribution For All Years">
+  <img src="https://github.com/tpender95/Predicting-Boston-Property-ATV/blob/master/pics/logtransavtot.png" width="700" title="AV_TOTAL Distribution For All Years">
 </p>
 
