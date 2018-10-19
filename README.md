@@ -6,6 +6,8 @@ There are numerous things that came to my mind upon reading the prompt, they are
 * Predicting the assessed tax value of a property through a regression.
 * Time Series Analysis of the median assessed tax value of similar properties based on clustering techniques.
 
+Data and information was was taken from the [City of Boston Assessing Department](https://data.boston.gov/dataset/property-assessment).
+
 # EDA
 Initially, I thought to seek out which features had the most influence on the target variables AV_TOTAL. 
 Apart from other target variables the most highly correlated features were:
@@ -27,6 +29,9 @@ Another aspect I looked at was principal component analysis (PCA). PCA allowed m
 # Modeling
 ## Regression
 Once the formatting of the data frames was complete I conducted a train-test-split with a test size of 85% of the original data frame, of original size 120,000, and then used the standard scaler function from sklearn's preprocessing library, fit it to the entire original data frame and then transformed the X_train and X_test data frames. From that point I used a Ridge regression in a grid-searching function called gsoptimizer that optimized for the negative mean squared error. I also ran the same model and optimized for the scorer R^2 and achieved a best score of 0.96. Once the model has run the function then predicts the true AV_TOTAL for the corresponding year's data frame and saves that to a .csv file.
+<p align="center">
+  <img src="https://github.com/tpender95/Predicting-Boston-Property-ATV/blob/master/pics/av_2018_truevpred.png" width="700" title="Ridge Regression of ATV for 2018, R^2 = 0.96">
+</p>
 
 I decided to use a ridge regression because a ridge regression is a regression technique that is optimized for prediction, rather than inference. Unlike a normal regression which gives you some unbiased regression coefficients which are just the maximum likelihood estimates that are observed in the given data set a ridge regression allows you to regularize the coefficients. What this means is that the coefficients estimated by the regression are pushed towards 0, to make them work better on a testing data set, this just means we're optimizing for prediction. Overall this lets use a somewhat complex model and while avoiding much over-fitting at the same time.
 
@@ -49,4 +54,7 @@ I initially looked to see if there was any correlation with the previous year's 
   <img src="https://github.com/tpender95/Predicting-Boston-Property-ATV/blob/master/pics/rf_price_prediction.png" width="700" title="Random Forest Regressor for Time Series Analysis of ATV">
 </p>
 
-However, I do believe that even though I have used the median house price change over the time period the data set lacks more sequential time series data to use more complex models like an LSTM. Perhaps there is something else to do here with this data but I am not aware of it. The most robust model I could truly thing about building is using the historical mean, the historical median for added robustness or even a random walk to forecast the last observation out.
+However, I do believe that even though I have used the median house price change over the time period the data set lacks more sequential time series data to use more complex models like an LSTM. Perhaps there is something else to do here with this data but I am not aware of it. The most robust model I could truly thing about building is using the historical mean, the historical median for added robustness or even a random walk to forecast the last observation out. One could possibly view this problem as simply dealing with a sparse matrix with 364 missing values in-between each data point. We could seek to imput data into these rows however, that is making up data and not a method of best practice.
+
+# Conclusion
+
