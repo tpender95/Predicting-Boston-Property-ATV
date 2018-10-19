@@ -13,3 +13,7 @@ Apart from other target variables the most highly correlated features were:
 * GROSS_AREA = 0.76
 
 Before I began any feature engineering I decided to look at the target variables. Specifically I have included the visualizations for AV_TOTAL. There is a wide range of prices in all the training data frames and for this reason I decided to take the properties with an AV_TOTAL of 0 and add 1 to them, and then took the log transform of the entire column to see how the target variable was distributed. I felt that this was appropriate because firstly because log(1) = 1 and wouldn't offset the other data either to give as a somewhat normal distribution of the target variable. Predicting using the log transformation can is helpful be used to make highly skewed distributions less skewed. This can be valuable to both making patterns in the data more interpretable and also for helping to meet the assumptions of inferential statistics. 
+
+The target variable's distribution for all years is shown below:
+![AV_TOTAL Distribution For All Years](https://github.com/tpender95/Predicting-Boston-Property-ATV/blob/master/pics/logtransavtot.png)
+
